@@ -33,10 +33,4 @@ public class Estado implements BaseModel<Long> {
     @Column(name = "nome")
     private String nome;
 
-    @Getter
-    @Setter
-    @Size(max = 15)
-    @Column(name = "regiao")
-    private String regiao;
-
 }
