@@ -6,7 +6,7 @@ import com.meloafc.people.service.base.AbstractService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PessoaService extends AbstractService<Pessoa, Long> {
+public class PessoaService extends AbstractService<Pessoa, Long, PessoaRepository> {
 
     public PessoaService(PessoaRepository repository) {
         super(repository);
