@@ -37,6 +37,7 @@ public class Pessoa implements BaseModel<Long> {
 
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private Perfil perfil;
 
     @Getter

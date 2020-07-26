@@ -30,7 +30,7 @@ CREATE TABLE `pessoa` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(11) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
-  `perfil` int(11) DEFAULT NULL,
+  `perfil` varchar(255) DEFAULT NULL,
   `endereco_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKei4abnsw085kx27j89rp796ny` (`endereco_id`),
