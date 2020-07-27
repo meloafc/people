@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql-people:
+    container_name: mysql-people
+    image: mysql/mysql-server:5.7
+    environment:
+      TZ: America/Manaus
+      MYSQL_DATABASE: people
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - people
+
+  backend-people:
+    container_name: backend-people
+    build: ./
+    working_dir: /backend-people
+    volumes:
+      - ./:/backend-people
+      - ~/.m2:/root/.m2
+    ports:
+      - "8080:8080"
+    command: mvn clean spring-boot:run -DDATASOURCE.URL=jdbc:mysql://mysql-people:3306/people?useSSL=false -DDATASOURCE.USERNAME=root -DDATASOURCE.PASSWORD=root
+    depends_on:
+      - mysql-people
+    networks:
+      - people
+
+networks:
+  people:
