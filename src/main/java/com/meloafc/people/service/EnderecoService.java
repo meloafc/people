@@ -35,4 +35,9 @@ public class EnderecoService extends AbstractService<Endereco, Long, EnderecoRep
 
         return super.add(entity);
     }
+
+    @Override
+    protected String getNotFoundMessage() {
+        return "address.notFound";
+    }
 }

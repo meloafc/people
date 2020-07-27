@@ -23,4 +23,8 @@ public class CidadeService extends AbstractService<Cidade, Long, CidadeRepositor
         return getRepository().findByEstadoId(estadoId);
     }
 
+    @Override
+    protected String getNotFoundMessage() {
+        return "city.notFound";
+    }
 }

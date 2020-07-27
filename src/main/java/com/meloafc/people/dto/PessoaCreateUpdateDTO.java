@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaDTO {
+public class PessoaCreateUpdateDTO {
 
     private Long id;
     private String nome;
@@ -16,8 +16,5 @@ public class PessoaDTO {
     private Perfil perfil;
     private String rua;
     private Long cidadeId;
-    private String cidadeNome;
-    private Long estadoId;
-    private String estadoNome;
 
 }

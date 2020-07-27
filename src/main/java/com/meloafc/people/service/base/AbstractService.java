@@ -1,5 +1,6 @@
 package com.meloafc.people.service.base;
 
+import com.meloafc.people.exception.NotFoundException;
 import com.meloafc.people.model.BaseModel;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 public abstract class AbstractService<T extends BaseModel<I>, I extends Serializable, R extends JpaRepository<T,I>> implements Service<T, I> {
 
@@ -21,8 +21,8 @@ public abstract class AbstractService<T extends BaseModel<I>, I extends Serializ
     }
 
     @Override
-    public Optional<T> findOne(I id) {
-        return repository.findById(id);
+    public T findOne(I id) throws NotFoundException {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException(getNotFoundMessage()));
     }
 
     @Override
@@ -48,5 +48,9 @@ public abstract class AbstractService<T extends BaseModel<I>, I extends Serializ
     @Override
     public void remove(I id) {
         getRepository().deleteById(id);
+    }
+
+    protected String getNotFoundMessage() {
+        return "resource.notFound";
     }
 }

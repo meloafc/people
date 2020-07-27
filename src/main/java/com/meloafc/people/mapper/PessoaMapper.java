@@ -1,5 +1,6 @@
 package com.meloafc.people.mapper;
 
+import com.meloafc.people.dto.PessoaCreateUpdateDTO;
 import com.meloafc.people.dto.PessoaDTO;
 import com.meloafc.people.model.Cidade;
 import com.meloafc.people.model.Endereco;
@@ -12,11 +13,22 @@ public class PessoaMapper implements GenericMapper<Pessoa, PessoaDTO> {
         return PessoaDTO.builder()
                 .id(entity.getId())
                 .nome(entity.getNome())
+                .cpf(entity.getCpf())
+                .perfil(entity.getPerfil())
+                .rua(entity.getEndereco().getRua())
+                .cidadeId(entity.getEndereco().getCidade().getId())
+                .cidadeNome(entity.getEndereco().getCidade().getNome())
+                .estadoId(entity.getEndereco().getCidade().getEstado().getId())
+                .estadoNome(entity.getEndereco().getCidade().getEstado().getNome())
                 .build();
     }
 
     @Override
     public Pessoa convertToEntity(PessoaDTO dto) {
+        return null;
+    }
+
+    public Pessoa convertToEntity(PessoaCreateUpdateDTO dto) {
         return Pessoa.builder()
                 .id(dto.getId())
                 .nome(dto.getNome())
